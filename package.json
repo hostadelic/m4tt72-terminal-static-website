@@ -1,21 +1,17 @@
 {
-  "name": "terminal",
+  "name": "m4tt72-terminal-static-website",
   "private": true,
-  "version": "3.4.0",
+  "version": "3.5.0",
   "type": "module",
   "license": "MIT",
   "author": {
-    "name": "Yassine Fathi",
-    "url": "https://fathi.me",
-    "email": "yassine@fathi.me"
-  },
-  "funding": {
-    "type": "Paypal",
-    "url": "https://paypal.me/yfthi"
+    "name": "Xvdfe",
+    "url": "https://github.com/xvdfe/xvdfe",
+    "email": "xvdfe@medianect.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/m4tt72/terminal"
+    "url": "https://github.com/hostadelic/m4tt72-terminal-static-website"
   },
   "scripts": {
     "dev": "vite",

@@ -13,8 +13,8 @@ export const commands: Record<string, (args: string[]) => Promise<string> | stri
       Productivity: ["todo", "weather"],
       Customization: ["theme", "banner"],
       Network: ["curl", "hostname", "whoami"],
-      Contact: ["email", "repo", "donate"],
-      Fun: ["echo", "sudo", "vi", "vim", "emacs"],
+      Contact: ["email", "repo"],
+      Utilities: ["echo", "bookmark"],
     };
 
     let output = "Available commands:\n\n";
@@ -33,14 +33,18 @@ export const commands: Record<string, (args: string[]) => Promise<string> | stri
   hostname: () => hostname,
   whoami: () => "guest",
   date: () => new Date().toLocaleString(),
-  vi: () => `why use vi? try 'emacs'`,
-  vim: () => `why use vim? try 'emacs'`,
-  emacs: () => `why use emacs? try 'vim'`,
   echo: (args: string[]) => args.join(" "),
-  sudo: (args: string[]) => {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+  bookmark: (args: string[]) => {
+    if (args.length === 0) {
+      return 'No bookmarks';
+    }
+    switch (bookmark) {
+    case 'test':
+      window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+      break;
+    }
 
-    return `Permission denied: unable to run the command '${args[0]}' as root.`;
+    return `Link opened in new tab or window.`;
   },
   theme: (args: string[]) => {
     const usage = `Usage: theme [args].
@@ -101,11 +105,6 @@ export const commands: Record<string, (args: string[]) => Promise<string> | stri
 
     return `Opening mailto:${packageJson.author.email}...`;
   },
-  donate: () => {
-    window.open(packageJson.funding.url, "_blank");
-
-    return "Opening donation url...";
-  },
   weather: async (args: string[]) => {
     const city = args.join("+");
 
@@ -118,7 +117,7 @@ export const commands: Record<string, (args: string[]) => Promise<string> | stri
     return weather.text();
   },
   exit: () => {
-    return "Please close the tab to exit.";
+    return "Close the tab to exit.";
   },
   curl: async (args: string[]) => {
     if (args.length === 0) {
@@ -137,12 +136,12 @@ export const commands: Record<string, (args: string[]) => Promise<string> | stri
     }
   },
   banner: () => `
-███╗   ███╗██╗  ██╗████████╗████████╗███████╗██████╗
-████╗ ████║██║  ██║╚══██╔══╝╚══██╔══╝╚════██║╚════██╗
-██╔████╔██║███████║   ██║      ██║       ██╔╝ █████╔╝
-██║╚██╔╝██║╚════██║   ██║      ██║      ██╔╝ ██╔═══╝
-██║ ╚═╝ ██║     ██║   ██║      ██║      ██║  ███████╗
-╚═╝     ╚═╝     ╚═╝   ╚═╝      ╚═╝      ╚═╝  ╚══════╝ v${packageJson.version}
+   _____         .____          ___. /\\   _____/\\
+  /     \\ ___.__.|█   █|   _____ \\_█|_\\(  / ___ )/
+ /  \\ /  <   |  ||█   █|   \\__  \\ |█__ \\ / / ._\\ \\
+/    Y    \\___  ||█   █|___ / __ \\|█\\_\\ <  \\_____/
+\\____|__  / ____||_______ (____  /___  /\\_____\\
+        \\/\\/             \\/    \\/    \\/  v${packageJson.version}
 
 Type 'help' to see list of available commands.
 `,
