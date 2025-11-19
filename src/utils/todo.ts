@@ -9,7 +9,7 @@ interface Todo {
 class TodoManager {
   private todos: Todo[] = [];
   private nextId: number = 1;
-  private readonly storageKey = "terminal-todos";
+  private readonly storageKey = "mylab-browser-todos";
 
   constructor() {
     this.loadTodos();

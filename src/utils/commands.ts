@@ -3,6 +3,7 @@ import themes from "../../themes.json";
 import { history } from "../stores/history";
 import { theme } from "../stores/theme";
 import { todoManager } from "./todo";
+import { getRandomBanner } from "./banner";
 
 const hostname = window.location.hostname;
 
@@ -135,13 +136,8 @@ export const commands: Record<string, (args: string[]) => Promise<string> | stri
       return `curl: could not fetch URL ${url}. Details: ${error}`;
     }
   },
-  banner: () => `
-   _____         .____          ___. /\\   _____/\\
-  /     \\ ___.__.|█   █|   _____ \\_█|_\\(  / ___ )/
- /  \\ /  <   |  ||█   █|   \\__  \\ |█__ \\ / / ._\\ \\
-/    Y    \\___  ||█   █|___ / __ \\|█\\_\\ <  \\_____/
-\\____|__  / ____||_______ (____  /___  /\\_____\\
-        \\/\\/             \\/    \\/    \\/  v${packageJson.version}
+  //banner: () => `v${packageJson.version}
+  banner: () => getRandomBanner() + `v${packageJson.version}
 
 Type 'help' to see list of available commands.
 `,
